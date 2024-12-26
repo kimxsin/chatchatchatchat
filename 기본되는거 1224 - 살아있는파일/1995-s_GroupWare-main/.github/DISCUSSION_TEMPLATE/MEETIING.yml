@@ -1,0 +1,25 @@
+title: "MEETING"
+body:
+  - type: checkboxes
+    attributes:
+      label: 참여자
+      options:
+        - label: "근희"
+        - label: "경훈"
+        - label: "관훈"
+        - label: "은미"
+        - label: "재민"
+        
+  - type: textarea
+    id: improvements
+    attributes:
+      label: 회의내역(자세히)
+      description: "구체적으로 적어주세요.."
+      value: |
+        1.
+        2.
+        3.
+        4.
+      render: bash
+    validations:
+      required: true

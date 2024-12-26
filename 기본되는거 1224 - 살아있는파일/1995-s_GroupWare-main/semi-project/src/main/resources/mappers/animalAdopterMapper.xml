@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.adoption.model.dao.AdoptionMapper">
+
+    <resultMap id="AdopterListResultMap" type="com.ohgiraffers.semiproject.adoption.model.dto.AdoptionDTO">
+        <id property="adoptNo" column="adopt_no"/>
+
+        <result property="adoptName" column="adopt_name"/>
+        <result property="adoptEmail" column="adopt_email"/>
+        <result property="adoptPhone" column="adopt_phone"/>
+        <result property="adoptAge" column="adopt_age"/>
+        <result property="adoptGender" column="adopt_gender"/>
+        <result property="adoptStartDate" column="adopt_start_date"/>
+        <result property="adoptEndDate" column="adopt_end_date"/>
+        <result property="adoptStatus" column="adopt_status"/>
+
+        <association property="animalDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.AnimalDTO">
+            <id property="animalCode" column="animal_code"/>
+            <result property="animalStatus" column="animal_status"/>
+        </association>
+
+        <association property="empDTO" javaType="com.ohgiraffers.semiproject.animals.model.dto.EmpDTO">
+            <id property="empCode" column="emp_code"/>
+            <result property="empName" column="emp_name"/>
+            <result property="empPhone" column="emp_phone"/>
+        </association>
+    </resultMap>
+<!-- 입양진행중 조회 -->
+    <select id="adopting" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양진행중'
+    </select>
+<!-- 입양완료 조회 -->
+    <select id="adoptCompleted" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양완료'
+    </select>
+<!-- 입양취소 조회 -->
+    <select id="adoptCanceled" resultMap="AdopterListResultMap">
+        SELECT
+        *
+        FROM
+        tbl_ani_adopt AD
+        JOIN
+        TBL_ANIMAL A ON AD.animal_code = A.animal_code
+        JOIN
+        TBL_EMP E ON AD.EMP_CODE = E.EMP_CODE
+        WHERE
+        adopt_status = '입양취소'
+    </select>
+
+
+</mapper>

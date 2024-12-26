@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.approval.model.dao.ApprovalMapper">
+
+    <insert id="insertVacForm" parameterType="com.ohgiraffers.semiproject.manager.model.dto.VacPaymentDTO">
+        insert into tbl_vacpayment
+        (emp_code, deadline_date, type, vac_start_date, vac_end_date, vac_reason, progress_code, admin_code, admin_name,owner_code)
+        values
+        (#{empCode}, DATE_FORMAT(#{deadLineDate}, '%Y-%m-%d'), #{type}, DATE_FORMAT(#{vacStartDate}, '%Y-%m-%d'), DATE_FORMAT(#{vacEndDate}, '%Y-%m-%d'), #{vacReason}, #{progressCode}, #{adminCode}, #{adminName},#{ownerCode})
+    </insert>
+
+</mapper>

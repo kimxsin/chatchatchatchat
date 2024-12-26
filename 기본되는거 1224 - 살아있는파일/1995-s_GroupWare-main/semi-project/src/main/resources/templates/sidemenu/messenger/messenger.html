@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>메신저(채팅)</title>
+    <link rel="stylesheet" href="/main/css/main-style.css">
+    <link rel="stylesheet" href="/sidemenu/messenger/css/messenger.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="/sidemenu/messenger/js/messenger.js"></script>
+</head>
+<body onload="connect()">
+<header>
+    <div class="side-menu-bar">
+        <ul>
+            <li><a href="/main">🐶PetHarmony🐶</a></li>
+            <li><a href="http://localhost:9595/sidemenu/schedule">근태관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/messenger">메신저(채팅)</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mail">이메일</a></li>
+            <li><a href="http://localhost:9595/sidemenu/adoption">입양</a></li>
+            <li class="animal-menu">
+                <div class="menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/animals">동물
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/animals">구조동물</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/adoptionComplete">입양완료</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/stock">재고관리</a></li>
+                </ul>
+            </li>
+            <li><a href="http://localhost:9595/sidemenu/facilities">시설관리</a></li>
+            <li><a href="http://localhost:9595/sidemenu/board">전사게시판</a></li>
+            <li><a href="http://localhost:9595/sidemenu/employee">직원정보</a></li>
+            <li><a href="http://localhost:9595/sidemenu/mypage">마이페이지</a></li>
+            <li><a href="http://localhost:9595/sidemenu/approval">결재</a></li>
+            <li class="admin-menu">
+                <div class="admin-menu-wrapper">
+                    <a href="http://localhost:9595/sidemenu/manager">관리자전용
+                        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+                    </a>
+                </div>
+                <ul class="sub-menu">
+                    <li><a href="http://localhost:9595/sidemenu/manager">관리자페이지</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeRegister">사원등록</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/employeeManagement">직원관리</a></li>
+                    <li><a href="http://localhost:9595/sidemenu/approvalBox">결재함</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>
+<div class="change-screen-messenger">
+    <div id="change-screen-content">메신저 페이지</div>
+    <div class="chat-container">
+        <div class="users">
+            <h3>사용자 목록</h3>
+            <ul id="userList"></ul>
+        </div>
+        <div class="chat-box">
+            <h3 id="chatWith">채팅 상대: 없음</h3>
+            <div id="chatHistory" class="chat-history"></div>
+            <input type="text" id="messageInput" placeholder="메시지를 입력하세요..." />
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

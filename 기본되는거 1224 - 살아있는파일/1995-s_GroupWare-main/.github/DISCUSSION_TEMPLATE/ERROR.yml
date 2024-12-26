@@ -1,0 +1,37 @@
+title: "ERROR"
+body:
+  - type: checkboxes
+    attributes:
+      label: 작성자
+      options:
+        - label: "근희"
+        - label: "경훈"
+        - label: "관훈"
+        - label: "은미"
+        - label: "재민"
+
+  - type: dropdown
+    id: download
+    attributes:
+      label: 에러내용
+      options:
+        - "403 에러"
+        - "404 에러"
+        - "500 에러"
+        - "기타"
+    validations:
+      required: true
+
+  - type: textarea
+    id: improvements
+    attributes:
+      label: 에러내역(자세히)
+      description: "구체적으로 적어주세요.."
+      value: |
+        -
+        -
+        -
+        -
+      render: bash
+    validations:
+      required: true

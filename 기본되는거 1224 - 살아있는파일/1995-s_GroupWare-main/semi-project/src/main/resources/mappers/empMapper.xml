@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.employee.model.dao.EmployeeMapper">
+    <resultMap id="empResult" type="com.ohgiraffers.semiproject.employee.model.dto.EmployeeDTOJOB">
+        <id property="empCode" column="emp_code"/>
+        <result property="empPass" column="emp_pass"/>
+        <result property="empName" column="emp_name"/>
+        <result property="empEmail" column="emp_email"/>
+        <result property="empPhone" column="emp_phone"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="empGender" column="emp_gender"/>
+        <result property="empAddress" column="emp_address"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="authority" column="authority"/>
+        <result property="profileImage" column="profile_image"/>
+        <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+            <id property="deptCode" column="dept_code"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+            <id property="jobCode" column="job_code"/>
+            <result property="jobName" column="job_name"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="employeeJoinListMap" type="com.ohgiraffers.semiproject.employee.model.dto.EmployeeJoinListDTO">
+        <id property="empCode" column="emp_code"/>
+        <result property="empPass" column="emp_pass"/>
+        <result property="empName" column="emp_name"/>
+        <result property="empEmail" column="emp_email"/>
+        <result property="empPhone" column="emp_phone"/>
+        <result property="hireDate" column="hire_date"/>
+        <result property="entDate" column="ent_date"/>
+        <result property="empGender" column="emp_gender"/>
+        <result property="empAddress" column="emp_address"/>
+        <result property="jobCode" column="job_code"/>
+        <result property="deptCode" column="dept_code"/>
+        <result property="authority" column="authority"/>
+        <result property="profile_image" column="profile_image"/>
+        <association property="deptDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.DeptDTO">
+            <id property="deptCode" column="dept_code"/>
+            <result property="deptName" column="dept_name"/>
+        </association>
+        <association property="jobDTO" javaType="com.ohgiraffers.semiproject.employee.model.dto.JobDTO">
+            <id property="jobCode" column="job_code"/>
+            <result property="jobName" column="job_name"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="CommentResultMap" type="com.ohgiraffers.semiproject.employee.model.dto.CommentDTO">
+        <result property="id" column="id" />
+        <result property="empCode" column="emp_code" />
+        <result property="text" column="comment_contents" />
+        <result property="createdDate" column="created_date" jdbcType="TIMESTAMP" />
+        <result property="commentEmpCode" column="comment_emp_code" />
+    </resultMap>
+
+    <!-- 직원 전체조회 -->
+    <select id="empAll" resultMap="empResult">
+        SELECT
+        a.job_name,
+        b.*,
+        c.dept_name
+        FROM
+        tbl_job a
+        JOIN
+        tbl_emp b on(a.job_code = b.job_code)
+        JOIN
+        tbl_dept c on(b.dept_code = c.dept_code)
+        ORDER BY emp_code
+        LIMIT #{offset}, #{size}
+    </select>
+    <!-- 직원 상세조회 -->
+    <select id="empSelect" resultMap="empResult">
+        SELECT
+        a.job_name,
+        b.*,
+        c.dept_name
+        FROM
+        tbl_job a
+        JOIN
+        tbl_emp b on(a.job_code = b.job_code)
+        JOIN
+        tbl_dept c on(b.dept_code = c.dept_code)
+        WHERE
+        emp_code = #{empCode}
+    </select>
+
+    <insert id="saveComment" parameterType="com.ohgiraffers.semiproject.employee.model.dto.CommentDTO">
+        INSERT INTO tbl_comment (emp_code, comment_contents, comment_emp_code)
+        VALUES (#{empCode}, #{text}, #{commentEmpCode})
+    </insert>
+
+    <select id="comment" resultMap="CommentResultMap">
+        SELECT id, emp_code, comment_contents, created_date, comment_emp_code
+        FROM tbl_comment
+        WHERE emp_code = #{empCode}
+        ORDER BY created_date DESC
+    </select>
+
+    <!-- 직원 검색 -->
+    <select id="empSearch" resultMap="empResult">
+        SELECT
+        a.job_name,
+        b.*,
+        c.dept_name
+        FROM
+        tbl_job a
+        JOIN
+        tbl_emp b on(a.job_code = b.job_code)
+        JOIN
+        tbl_dept c on(b.dept_code = c.dept_code)
+        WHERE
+        (#{query} IS NULL OR #{query} = '' OR emp_name LIKE CONCAT('%', #{query}, '%'))
+        ORDER BY emp_code
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <!-- 조건부 검색 게시글 개수 조회 -->
+    <select id="countAll1" resultType="long">
+        SELECT COUNT(*)
+        FROM tbl_emp
+        <where>
+            <if test="query != null and query != ''">
+                emp_name LIKE CONCAT('%', #{query}, '%')
+            </if>
+        </where>
+    </select>
+
+    <!-- 전체 게시글 개수 조회 -->
+    <select id="countAll" resultType="long">
+        SELECT COUNT(*)
+        FROM tbl_emp
+    </select>
+    
+    <select id="empAllSelect" resultMap="employeeJoinListMap">
+        select
+            a.emp_code,
+            a.emp_name,
+            b.job_name,
+            c.dept_name
+        from
+            tbl_emp a
+        join tbl_job b on (a.job_code = b.job_code)
+        join tbl_dept c on (a.dept_code = c.dept_code)
+
+    </select>
+
+    <delete id="commentDelete" parameterType="com.ohgiraffers.semiproject.employee.model.dto.CommentDTO">
+        DELETE FROM tbl_comment
+        WHERE id = #{id}
+        AND emp_code = #{empCode}
+        AND comment_emp_code = #{commentEmpCode}
+    </delete>
+</mapper>

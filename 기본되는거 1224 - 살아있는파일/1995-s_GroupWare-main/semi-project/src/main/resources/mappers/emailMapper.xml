@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ohgiraffers.semiproject.mail.model.dao.MailMapper">
+    <resultMap id="mailSelect" type="com.ohgiraffers.semiproject.mail.model.dto.MailDTO">
+        <id property="emailCode" column="email_code"/>
+        <result property="importantEmail" column="important_email"/>
+        <result property="emailTitle" column="title"/>
+        <result property="emailFile" column="file"/>
+        <result property="emailContent" column="content"/>
+        <result property="sendDate" column="send_date"/>
+        <result property="deleteDate" column="delete_date"/>
+        <result property="address" column="address"/>
+        <result property="mailboxNo" column="mailbox_no"/>
+        <result property="receptionType" column="reception_type"/>
+        <result property="receptionStatus" column="reception_status"/>
+        <result property="senderId" column="sender_id"/>
+        <result property="recipientId" column="recipient_id"/>
+    </resultMap>
+
+    <select id="mailAllSelect" resultMap="mailSelect">
+        SELECT
+            *
+        FROM
+            TBL_EMAIL
+    </select>
+
+<!--    <insert id="registMail" parameterType="com.ohgiraffers.semiproject.mail.model.dto.MailDTO">-->
+<!--        insert into tbl_email-->
+<!--        (-->
+<!--        emailCode,-->
+<!--        importantEmail,-->
+<!--        emailTitle,-->
+<!--        emailFile,-->
+<!--        emailContent,-->
+<!--        sendDate,-->
+<!--        deleteDate,-->
+<!--        address,-->
+<!--        mailboxNo,-->
+<!--        receptionType,-->
+<!--        receptionStatus,-->
+<!--        senderId,-->
+<!--        recipientId-->
+<!--        )-->
+<!--        values-->
+<!--        (-->
+<!--        #{email_code},-->
+<!--        #{important_email},-->
+<!--        #{title},-->
+<!--        #{file},-->
+<!--        #{content},-->
+<!--        #{send_date},-->
+<!--        #{delete_date},-->
+<!--        #{address},-->
+<!--        #{mailbox_no},-->
+<!--        #{reception_type},-->
+<!--        #{reception_status},-->
+<!--        #{sender_id},-->
+<!--        #{recipient_id}-->
+<!--        )-->
+<!--    </insert>-->
+</mapper>

@@ -1,0 +1,123 @@
+body, table {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h2   {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    padding: 10px;
+}
+
+h3 {
+    margin-left: 25px;
+}
+
+.change-screen-regist {
+    width: 1850px;
+    height: 800px;
+    background-color: white;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    color: #000000;
+    margin-top: -12.3px;
+}
+
+.header-title {
+    display: flex; /* Flexbox 사용 */
+    justify-content: space-between; /* 요소 간격 조정 */
+    align-items: center; /* 수직 중앙 정렬 */
+    margin-bottom: 20px; /* 아래 여백 */
+}
+
+.title-textarea {
+    flex-grow: 1; /* 남은 공간을 차지 */
+    margin-right: 10px; /* textarea와 select 사이의 간격 */
+}
+
+.textareaLabel {
+    background: #fbfbfb;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-left: 25px;
+    margin-right: 30px;
+}
+
+.emp-select select {
+    width: 1750px;
+    padding: 10px;
+    border: 1px solid #f0f0f0;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    margin-left: 25px;
+    background: #fdfdfd; /* 부드러운 크림색 배경 */
+}
+
+input[type="text"], textarea {
+    background: #fbfbfb; /* 부드러운 크림색 배경 */
+    padding: 10px; /* 내부 여백 */
+    border: 1px solid #f0f0f0; /* 다크 베이지색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    font-size: 16px; /* 폰트 크기 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    margin-left: 10px; /* 왼쪽 여백 추가 */
+}
+
+input[type="submit"] {
+    background-color: #006a38; /* 토마토 색상 */
+    color: white; /* 글자색 */
+    border: none; /* 테두리 없음 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    padding: 10px 15px; /* 내부 여백 */
+    font-size: 16px; /* 폰트 크기 */
+    font-weight: bold;
+    cursor: pointer; /* 커서 포인터 */
+    margin-top: 20px; /* 위 여백 */
+    transition: background-color 0.3s; /* 배경색 변화 애니메이션 */
+    margin-left: 25px;
+
+}
+
+input[type="submit"]:hover {
+    background-color: #00532d; /* 호버 시 배경색 변화 */
+}
+
+textarea {
+    width: 1750px;
+    height: 500px; /* 높이 조정 */
+    padding: 10px; /* 내부 여백 */
+    border: 1px solid #f0f0f0; /* 다크 베이지색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    font-size: 16px; /* 폰트 크기 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    resize: both; /* 크기 조정 가능 */
+    margin-left: 25px; /* 왼쪽 여백 추가 */
+}
+
+.title-con {
+    width: 1750px; /* 너비를 100%로 설정 */
+    height: 300px; /* 높이를 150px로 설정 (필요에 따라 조정 가능) */
+    padding: 5px; /* 내부 여백 추가 */
+    border: 1px solid #eeeeee; /* 다크 베이지색 테두리 */
+    border-radius: 10px; /* 모서리 둥글게 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함한 너비 계산 */
+    font-size: 16px; /* 글자 크기 조정 */
+    margin-top: 10px; /* 위쪽 여백 추가 */
+    margin-bottom: 10px; /* 아래쪽 여백 추가 */
+    margin-left: 25px; /* 왼쪽 여백 추가 */
+    resize: vertical; /* 세로 방향으로만 크기 조정 가능 */
+}
+
+select {
+    background: #fbfbfb; /* 부드러운 크림색 배경 */
+}
